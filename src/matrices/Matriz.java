@@ -48,6 +48,19 @@ public class Matriz {
         return matrizResultante; 
     } 
 
+    //producto de dos matrices
+    public static Matriz producto(Matriz a, Matriz b){
+        Matriz resultado= new Matriz(a.getDimension().height,a.getDimension().height,false);
+        for(int i=0; i<a.getDimension().height; i++){
+            for(int j=0; j<a.getDimension().height; j++){
+                for(int k=0; k<a.getDimension().height; k++){
+                    resultado.datos[i][j]+=a.datos[i][k]*b.datos[k][j];
+                }
+            }
+        }
+        return resultado;
+    }
+
     @Override
     public String toString(){
         String ret = "";
