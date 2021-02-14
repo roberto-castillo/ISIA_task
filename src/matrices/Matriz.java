@@ -48,6 +48,30 @@ public class Matriz {
         return matrizResultante; 
     } 
 
+    //matriz inversa
+    public static Matriz inversa(Matriz d) throws CloneNotSupportedException {
+        int n=d.getDimension().height;  //dimensión de la matriz
+        Matriz a=(Matriz)d.clone();
+        Matriz b=new Matriz(n,n,false);
+        Matriz c=new Matriz(n,n,false);
+
+        for(int i=0; i<n; i++){
+            b.datos[i][i]=1;
+        }
+
+        for(int k=0; k<n-1; k++){
+            for(int i=k+1; i<n; i++){
+                for(int s=0; s<n; s++){
+                    b.datos[i][s]-=a.datos[i][k]*b.datos[k][s]/a.datos[k][k];
+                }
+                for(int j=k+1; j<n; j++){
+                    a.datos[i][j]-=a.datos[i][k]*a.datos[k][j]/a.datos[k][k];
+                }
+            }
+        }
+        return a;
+    }
+
     @Override
     public String toString(){
         String ret = "";
